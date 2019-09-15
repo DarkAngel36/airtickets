@@ -1,0 +1,391 @@
+/*==================================RESPONSIVE LAYOUTS===============================================*/
+
+@media only screen and (max-width: 1199px){
+	
+	#header{
+		padding-top: 20px;
+	}
+
+	.first_section_label{
+		margin-bottom: 30px;
+	}
+
+	.first_section_title{
+		font-size: 50px;
+		line-height: 70px;
+		margin-bottom: 30px;
+	}
+
+	.first_section{
+		padding-top: 50px;
+		min-height: 430px;
+	}
+
+	.navigation li{
+		padding: 0 15px;
+	}
+
+	.logo{
+		margin-top: -12px;
+	}
+
+	.logo a{
+		width: 130px;
+	}
+
+	.tickets_list_item{
+		height: 166px;
+	}
+
+	.tickets_list_item_right{
+		width: 245px;
+	}
+	.tickets_list_item_right:before{
+		height: 120px;
+	}
+	.tickets_list_item_left{
+		padding: 0 30px 0 15px;
+	}
+
+	#header.header_inner{
+		padding: 20px 48px;
+	}
+
+	.search_tickets_box{
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		flex-wrap: wrap;
+		background: none;
+	}
+	.search_tickets_item{
+		width: 33.333333%;
+		background-color: #fff;
+	}
+	.search_tickets_btn_wrap{
+		width: 100%;
+		padding: 25px 0 0;
+		position: relative;
+	}
+	.search_tickets_btn:before,
+	.search_tickets_btn:after{
+		display: none;
+	}
+
+}
+
+@media only screen and (max-width: 991px){
+	
+  body{min-width:768px;}
+
+	#header{
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	#nav{
+		-webkit-order: 3;
+		-moz-order: 3;
+		-ms-order: 3;
+		-o-order: 3;
+		order: 3;
+		flex-basis: 100%;
+		padding-top: 15px;
+	}
+
+
+	.search_tickets_item:first-child{
+		border-radius: 4px 0 0 4px;
+	}
+
+	.search_tickets_item:nth-child(3){
+		border-radius: 0 4px 4px 0;
+	}
+
+	.jq-selectbox.dropup .jq-selectbox__dropdown{
+		margin-bottom: 22px;
+	}
+
+	.first_section{
+		padding-top: 70px;
+		min-height: 550px;
+	}
+
+	.tickets_list_item{
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		flex-wrap: wrap;
+		background: #fff;
+		border-radius: 4px;
+		height: auto;
+		margin: 0;
+		padding: 20px;
+	}
+
+	.tickets_list_item:not(:last-child){
+		margin-bottom: 20px;
+	}
+
+	.tickets_list_item_left{
+		padding: 0;
+	}
+
+	.tickets_list_item_right{
+		flex-basis: 100%;
+		width: auto;
+		-webkit-flex-direction: row;
+		-moz-flex-direction: row;
+		-ms-flex-direction: row;
+		-o-flex-direction: row;
+		flex-direction: row;
+		-webkit-justify-content: flex-end;
+		-moz-justify-content: flex-end;
+		-ms-justify-content: flex-end;
+		-o-justify-content: flex-end;
+		justify-content: flex-end;
+		padding-top: 20px;
+	}
+
+	.tickets_list_price{
+		margin-right: 20px;
+	}
+  
+	
+}
+
+@media only screen and (max-width: 767px) {
+   	body{min-width:420px;}
+	
+	#header{
+		padding: 10px 15px 0;
+	}
+
+	#header.header_inner{padding: 15px;}
+
+	.header_list{
+		width: auto;
+	}
+
+	#content{
+		padding-top: 101px;
+	}
+
+	.tickets_list_wrapp{
+		padding-bottom: 40px;
+	}
+
+	.search_tickets_box:not(:last-child){
+		margin-bottom: 30px;
+	}
+
+	.menu_btn{
+		display: block;
+	}
+
+	#nav{
+		padding: 0;
+		position: fixed;
+		opacity: 0;
+		visibility: hidden;
+		background-color: #fff;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 999;
+		-webkit-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+		box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+		-webkit-transition: opacity 0.5s;
+		-o-transition: opacity 0.5s;
+		transition: opacity 0.5s;
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		-webkit-flex-direction: column;
+		-moz-flex-direction: column;
+		-ms-flex-direction: column;
+		-o-flex-direction: column;
+		flex-direction: column;
+		-webkit-justify-content: center;
+		-moz-justify-content: center;
+		-ms-justify-content: center;
+		-o-justify-content: center;
+		justify-content: center;
+		text-align: center;
+		-ms-align-items: center;
+		align-items: center;
+	}
+
+	#nav.active{
+		opacity: 1;
+		visibility: visible;
+		-webkit-transition: right 0.3s;
+		-o-transition: right 0.3s;
+		transition: right 0.3s;
+	}
+
+	.navigation{
+		display: block;
+		padding: 20px;
+	}
+
+	.navigation li{
+		padding: 10px 0;
+	}
+
+	.navigation li a{
+		color: #3E4C5B;
+	}
+	
+	.logo{
+		margin: 0;
+	}
+
+	.first_section{
+		min-height: 100vh;
+		padding-top: 55px;
+		padding-bottom: 30px;
+		height: auto;
+	}
+
+	.first_section_label{
+		font-size: 18px;
+		line-height: 20px;
+		margin-bottom: 20px;
+	}
+
+	.first_section_title{
+		font-size: 25px;
+		line-height: 35px;
+		margin-bottom: 20px;
+	}
+
+	.search_tickets_item{
+		width: 100%;
+		padding: 20px;
+		border-radius: 4px !important;
+		margin-bottom: 10px;
+	}
+
+	.search_tickets_btn_wrap{
+		padding-top: 0;
+	}
+
+	.jq-selectbox__select{
+		font-size: 15px;
+		line-height: 20px;
+	}
+
+	.jq-selectbox li, .jq-select-multiple li{
+		font-size: 14px;
+	}
+
+	.date_input_box{
+		font-size: 15px;
+		line-height: 20px;
+	}
+
+	.search_tickets_btn{
+		font-size: 16px;
+		line-height: 20px;
+		padding: 20px;
+		width: 200px;
+	}
+
+	.close_menu{
+		display: block;
+	}
+
+	.social_list{display: none;}
+
+	.social_list li a{
+		color: #3E4C5B;
+	}
+	
+	#nav .social_list{
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+	}
+
+	.tickets_list_cost_box{
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		flex-wrap: wrap;
+		background: none;
+	}
+
+	.tickets_list_cost_item{
+		flex-basis: 100%;
+		width: auto;
+		background-color: #fff;
+		border-radius: 4px;
+	}
+
+	.tickets_list_cost_item:not(:last-child){
+		margin-bottom: 10px;
+	}
+
+	.tickets_list_item_left{
+		-webkit-flex-wrap: wrap;
+		-moz-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		-o-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+
+	.tickets_list_item_left>*{
+		width: auto;
+		flex-basis: 100%;
+		text-align: center;
+	}
+
+	.tickets_list_scheme{
+		margin: 45px 10px;
+	}
+
+	.tickets_list_item_right{
+		-webkit-flex-direction: column;
+		-moz-flex-direction: column;
+		-ms-flex-direction: column;
+		-o-flex-direction: column;
+		flex-direction: column;
+	}
+
+	.tickets_list_price{
+		margin-right: 0;
+	}
+  
+  	#content:before{
+  		background: -moz-linear-gradient(top, rgba(229,229,229,0) 0%, rgba(229,229,229,1) 200px, rgba(229,229,229,1) 100%);
+	    background: -webkit-linear-gradient(top, rgba(229,229,229,0) 0%,rgba(229,229,229,1) 200px,rgba(229,229,229,1) 100%);
+	    background: linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(229,229,229,1) 200px,rgba(229,229,229,1) 100%);
+	    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00e5e5e5', endColorstr='#e5e5e5',GradientType=0 );
+  	} 
+
+}
+
+@media only screen and (max-width: 479px){
+   body{min-width:300px;}
+
+	.search_tickets_btn{
+		width: 100%;
+	}
+
+   	.btn{
+   		width: 100%;
+   	}
+
+}
