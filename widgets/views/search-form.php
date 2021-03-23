@@ -16,6 +16,7 @@ use yii\helpers\Html;
 <div class="form-tickets homescreen__box">
 	<?php $form = ActiveForm::begin([
 		'id'          => 'login-form',
+		'action'      => 'search-result',
 		'layout'      => 'horizontal',
 		'options'     => ['class' => 'form-tickets__form'],
 		'fieldConfig' => [
