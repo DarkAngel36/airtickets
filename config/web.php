@@ -4,18 +4,19 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-    ],
-    'components' => [
-        'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'JE2hnv_eLCDr0UWZdhIry-cm68zebMIl',
-        ],
+	'id'         => 'basic',
+	'basePath'   => dirname(__DIR__),
+	'language'   => 'en-US',
+	'bootstrap'  => ['log'],
+	'aliases'    => [
+		'@bower' => '@vendor/bower-asset',
+		'@npm'   => '@vendor/npm-asset',
+	],
+	'components' => [
+		'request'      => [
+			// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+			'cookieValidationKey' => 'JE2hnv_eLCDr0UWZdhIry-cm68zebMIl',
+		],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -37,21 +38,40 @@ $config = [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
+	                'class'  => 'yii\log\FileTarget',
+	                'levels' => ['error', 'warning'],
                 ],
             ],
         ],
-        'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
-    ],
+		'db'           => $db,
+		
+		'urlManager' => [
+			'enablePrettyUrl' => true,
+			'showScriptName'  => false,
+			'rules'           => [
+				'about'         => 'site/about',
+				'stories'       => 'site/stories',
+				'news'          => 'site/news',
+				'research'      => 'site/research',
+				'blog'          => 'site/blog',
+				'contacts'      => 'site/contacts',
+				'search-result' => 'site/search-result',
+			],
+		],
+		'i18n'       => [
+			'translations' => [
+				'app*' => [
+					'class'   => 'yii\i18n\PhpMessageSource',
+					//'basePath' => '@app/messages',
+					//'sourceLanguage' => 'en-US',
+					'fileMap' => [
+						'app'      => 'app.php',
+						'app/site' => 'site.php',
+					],
+				],
+			],
+		],
+	],
     'params' => $params,
 ];
 
