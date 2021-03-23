@@ -67,8 +67,8 @@ AppAsset::register($this);
 				<div class="row align-items-center justify-content-between">
 					<div class="col-auto col-xl-2 order-1">
 						<!-- logo -->
-						<a href="#" class="logo header__logo">
-							<img src="img/logo.png" alt="VoyageSales">
+						<a href="/" class="logo header__logo">
+							<img src="/img/logo.png" alt="VoyageSales">
 						</a>
 						<!-- /logo -->
 					</div>
