@@ -36,6 +36,16 @@ class SearchForm extends \yii\bootstrap\Widget {
 			$model->Infants  = 0;
 		}
 		
+		if (empty($model->Adult)) {
+			$model->Adult = 0;
+		}
+		if (empty($model->Children)) {
+			$model->Children = 0;
+		}
+		if (empty($model->Infants)) {
+			$model->Infants = 0;
+		}
+		
 		$WhenceSelectItems = $cities;
 		$WhereSelectItems  = $cities;
 		$SeatClassItems    = [
