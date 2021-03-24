@@ -11,7 +11,7 @@ class SearchForm extends \yii\bootstrap\Widget {
 		$curl = new curl\Curl();
 		
 		try {
-			$response     = $curl->get(Yii::$app->params['apiPath'] . '/api/airports?q=');
+			$response     = $curl->get(\Yii::$app->params['apiPath'] . '/api/airports?q=');
 			$responseData = json_decode($response, true);
 			
 			return $responseData = ArrayHelper::map($responseData['data']['results'], 'id', 'text');
