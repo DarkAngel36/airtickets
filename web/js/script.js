@@ -12,9 +12,11 @@ $('.nav__close').click(function () {
 
 $('.form-counter__btn').click(function (e) {
 	e.preventDefault();
-	let self   = $(this);
-	let parent = self.parent();
-	let form   = $('.form-counter__field', parent);
+	let self    = $(this);
+	let parent  = self.parent();
+	let form    = $('.form-counter__field', parent);
+	let counter = 0;
+	let fields  = $('.form-counter__field');
 	if (self.hasClass('form-counter__btn_minus')) {
 		if (form.attr('value') > 0) {
 			form.attr('value', function (i, val) {
@@ -27,6 +29,10 @@ $('.form-counter__btn').click(function (e) {
 			return ++val;
 		});
 	}
+	for (let i = 0; i < fields.length; i++) {
+		counter += Number(fields[i].value);
+	}
+	$('.form-passenger__value').html(`${counter} passenger`);
 });
 $('.form-passenger').click(function () {
 	$(this).addClass('form-passenger_open');

@@ -14,6 +14,10 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$isMainPage = false;
+if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index') {
+	$isMainPage = true;
+}
 ?>
 <?php $this->beginPage() ?>
 	<!DOCTYPE html>
@@ -57,7 +61,7 @@ AppAsset::register($this);
 
 	</head>
 
-	<body class="page page_home">
+	<body class="page <?= $isMainPage ? 'page_home' : '' ?>">
 	<?php $this->beginBody() ?>
 	<div class="wrapper">
 
@@ -68,7 +72,11 @@ AppAsset::register($this);
 					<div class="col-auto col-xl-2 order-1">
 						<!-- logo -->
 						<a href="/" class="logo header__logo">
-							<img src="/img/logo.png" alt="VoyageSales">
+							<?php if ($isMainPage): ?>
+								<img src="/img/logo.png" alt="VoyageSales">
+							<?php else: ?>
+								<img src="/img/logo1.png" alt="VoyageSales">
+							<?php endif ?>
 						</a>
 						<!-- /logo -->
 					</div>
