@@ -49,9 +49,10 @@ class SearchForm extends \yii\bootstrap\Widget {
 		$WhenceSelectItems = $cities;
 		$WhereSelectItems  = $cities;
 		$SeatClassItems    = [
-			'ECONOMY'  => 'Econom',
-			'BUSSINES' => 'Bussines',
-			'FIRST'    => 'First',
+			'ECONOMY'         => 'Economy',
+			'PREMIUM_ECONOMY' => 'PREMIUM ECONOMY',
+			'BUSINESS'        => 'Bussines',
+			'FIRST'           => 'First',
 		];
 		
 		return $this->render('search-form', [
