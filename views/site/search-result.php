@@ -18,6 +18,11 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 			<!-- /form-tickets -->
 
 			<input type="hidden" id="apiUrl" value="<?= Yii::$app->params['apiPath'] ?>">
+
+			<!-- loader -->
+			<div class="loader stop-animation"></div>
+			<!-- /loader -->
+
 			<!-- cost -->
 			<div class="cost main__cost hidden">
 				<div class="row no-gutters">
@@ -46,12 +51,6 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 				</div>
 			</div>
 			<!-- /cost -->
-
-			<!-- loader -->
-			<div class="loader stop-animation">
-
-			</div>
-			<!-- /loader -->
 
 			<!-- tickets-list -->
 			<ul class="tickets-list main__tickets-list hidden">

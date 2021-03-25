@@ -7,3 +7,7 @@
     -webkit-animation: inherit !important;
     animation: inherit !important;
 }
+
+header.header {
+    z-index: 1;
+}

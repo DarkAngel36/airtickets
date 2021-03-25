@@ -1,5 +1,5 @@
 angular.module('todoApp', [])
-	   .controller('SearchResultController', function ($scope, $http, $location) {
+	   .controller('SearchResultController', function ($scope, $timeout, $http, $location) {
 		   let todoList = this;
 
 		   document.querySelector('ul.tickets-list.main__tickets-list').classList
@@ -10,6 +10,9 @@ angular.module('todoApp', [])
 		   todoList.apiUrl     = null;
 
 		   todoList.model = queryParams;
+		   for (let k in todoList.model) {
+			   todoList.model[k] = queryParams[k];
+		   }
 
 		   todoList.bookList     = [];
 		   todoList.dictionaries = [];
@@ -25,10 +28,19 @@ angular.module('todoApp', [])
 			   }
 			   return ret;
 		   };
+
 		   /**
 			* поиск билетов
 			*/
-		   todoList.searchBooking = function ($scope) {
+		   todoList.searchBooking = function () {
+			   todoList.model.origin         = document.getElementById('searchfligth-whenceselect').value;
+			   todoList.model.destination    = document.getElementById('searchfligth-whereselect').value;
+			   todoList.model.departure_date = document.getElementById('searchfligth-departuredate').value;
+
+			   todoList.model.adults   = document.getElementById('searchfligth-adult').value;
+			   todoList.model.children = document.getElementById('searchfligth-children').value;
+			   todoList.model.infants  = document.getElementById('searchfligth-infants').value;
+
 			   todoList.bookList = [];
 			   todoList.isLoaded = false;
 			   document.querySelector('div.loader').classList.remove('stop-animation');
@@ -39,12 +51,12 @@ angular.module('todoApp', [])
 				   queryData[k] = todoList.model[k];
 			   }
 			   queryData.departure_date = new Date(queryData.departure_date + ' 2021').toISOString().slice(0, 10);
-			   ;
+			   console.log(queryData);
+			   console.log(todoList.model);
 			   var queryString = Object.keys(queryData).map(key => key + '=' + queryData[key]).join('&');
 			   $http({
 				   method : 'GET',
-				   //url    : 'http://flightapi.su/api/direct?' + queryString
-				   url : todoList.apiUrl + '/api/direct?' + queryString
+				   url    : todoList.apiUrl + '/api/direct?' + queryString
 			   }).then(
 				   function (response) {
 					   todoList.bookList         = response.data.data;

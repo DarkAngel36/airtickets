@@ -26,6 +26,12 @@ queryParams = {
 }
 JS;
 $this->registerJs($js, \yii\web\View::POS_HEAD);
+
+$js = <<<JS
+$('.form-passenger').click();
+$('.overlay').click();
+JS;
+$this->registerJs($js, \yii\web\View::POS_READY);
 ?>
 
 <div class="form-tickets homescreen__box">
@@ -33,7 +39,7 @@ $this->registerJs($js, \yii\web\View::POS_HEAD);
 		'id'          => 'login-form',
 		'action'      => 'search-result',
 		'layout'      => 'horizontal',
-		'method'      => 'GET',
+		'method'      => 'POST',
 		'options'     => ['class' => 'form-tickets__form'],
 		'fieldConfig' => [
 			'template'     => "{label}\n{input}\n{error}",
@@ -43,7 +49,8 @@ $this->registerJs($js, \yii\web\View::POS_HEAD);
 	]); ?>
 	<?php
 	$selectOptions = [
-		'class' => 'form-control',
+		'class'            => 'form-control',
+		'ng-model-options' => "{ getterSetter: true }",
 	];
 	?>
 
@@ -63,17 +70,19 @@ $this->registerJs($js, \yii\web\View::POS_HEAD);
 	<div class="form-group form-tickets__field">
 		<label class="form-tickets__label">Departure Date</label>
 		<?= Html::activeInput('text', $model, 'DepartureDate', [
-			'class'       => 'form-control datepicker',
-			'placeholder' => 'select date',
-			'ng-model'    => 'todoList.model.departure_date',
+			'class'            => 'form-control datepicker',
+			'placeholder'      => 'select date',
+			'ng-model'         => 'todoList.model.departure_date',
+			'ng-model-options' => "{ getterSetter: true }",
 		]) ?>
 	</div>
 	<div class="form-group form-tickets__field">
 		<label class="form-tickets__label">Returning Date</label>
 		<?= Html::activeInput('text', $model, 'ReturningDate', [
-			'class'       => 'form-control datepicker',
-			'placeholder' => 'select date',
-			'ng-model'    => 'todoList.model.return_date',
+			'class'            => 'form-control datepicker',
+			'placeholder'      => 'select date',
+			'ng-model'         => 'todoList.model.return_date',
+			'ng-model-options' => "{ getterSetter: true }",
 		]) ?>
 	</div>
 	<div class="form-group form-passenger form-tickets__field">
@@ -85,8 +94,9 @@ $this->registerJs($js, \yii\web\View::POS_HEAD);
 				<div class="form-counter form-passenger__counter">
 					<button class="form-counter__btn form-counter__btn_minus">-</button>
 					<?= Html::activeInput('text', $model, 'Adult', [
-						'class'    => 'form-counter__field',
-						'ng-model' => 'todoList.model.adult',
+						'class'            => 'form-counter__field',
+						'ng-model'         => 'todoList.model.adults',
+						'ng-model-options' => "{ getterSetter: true }",
 					]) ?>
 					<button class="form-counter__btn form-counter__btn_plus">+</button>
 				</div>
@@ -96,8 +106,9 @@ $this->registerJs($js, \yii\web\View::POS_HEAD);
 				<div class="form-counter form-passenger__counter">
 					<button class="form-counter__btn form-counter__btn_minus">-</button>
 					<?= Html::activeInput('text', $model, 'Children', [
-						'class'    => 'form-counter__field',
-						'ng-model' => 'todoList.model.children',
+						'class'            => 'form-counter__field',
+						'ng-model'         => 'todoList.model.children',
+						'ng-model-options' => "{ getterSetter: true }",
 					]) ?>
 					<button class="form-counter__btn form-counter__btn_plus">+</button>
 				</div>
@@ -107,8 +118,9 @@ $this->registerJs($js, \yii\web\View::POS_HEAD);
 				<div class="form-counter form-passenger__counter">
 					<button class="form-counter__btn form-counter__btn_minus">-</button>
 					<?= Html::activeInput('text', $model, 'Infants', [
-						'class'    => 'form-counter__field',
-						'ng-model' => 'todoList.model.infants',
+						'class'            => 'form-counter__field',
+						'ng-model'         => 'todoList.model.infants',
+						'ng-model-options' => "{ getterSetter: true }",
 					]) ?>
 					<button class="form-counter__btn form-counter__btn_plus">+</button>
 				</div>
