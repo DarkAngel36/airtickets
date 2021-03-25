@@ -21,7 +21,7 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 
 ?>
 <?php $this->beginPage() ?>
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" ng-app="todoApp">
 
 	<head>
 
