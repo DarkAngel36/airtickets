@@ -63,13 +63,13 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 						</div>
 					</div>
 				</li>
-				<li class="tickets-item tickets-list__item" ng-repeat="book in todoList.bookList.flights">
+				<li class="tickets-item tickets-list__item" ng-repeat="bookList in todoList.bookList.flights">
 					<div class="tickets-item__left">
 						<div class="tickets-item__logo">
 							<!--							<img src="img/S7-logoty.png" alt="">-->
-							<p ng-repeat="carrier in book.operating">{{ todoList.dictionaries.carriers[carrier] }}</p>
+							<p ng-repeat="carrier in bookList.operating">{{ todoList.dictionaries.carriers[carrier] }}</p>
 						</div>
-						<div class="tickets-item__info">
+						<div class="tickets-item__info" ng-repeat="book in bookList.tickets">
 							<div class="tickets-item__date">
 								<div class="tickets-item__date-time">{{ book.departure.at | date:'HH:mm' }}</div>
 								<div class="tickets-item__date-label">
@@ -108,7 +108,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 						</div>
 					</div>
 					<div class="tickets-item__right">
-						<div class="tickets-item__price">{{ +book.price.total | currency }}</div>
+						<div class="tickets-item__price">{{ +bookList.price.total | currency }}</div>
 						<button class="tickets-item__btn">Buy ticket</button>
 					</div>
 				</li>
