@@ -18,7 +18,7 @@ queryParams = {
 	origin         : '$model->WhenceSelect',
 	destination    : '$model->WhereSelect',
 	departure_date : '$model->DepartureDate',
-	return_date    : null,
+	return_date    : '$model->REturningDate',
 	currency       : 'USD',
 	adults         : $model->Adult,
 	children       : $model->Children,
