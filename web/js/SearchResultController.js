@@ -36,6 +36,7 @@ angular.module('todoApp', [])
 			   todoList.model.origin         = document.getElementById('searchfligth-whenceselect').value;
 			   todoList.model.destination    = document.getElementById('searchfligth-whereselect').value;
 			   todoList.model.departure_date = document.getElementById('searchfligth-departuredate').value;
+			   todoList.model.return_date    = document.getElementById('searchfligth-returningdate').value;
 
 			   todoList.model.adults       = document.getElementById('searchfligth-adult').value;
 			   todoList.model.children     = document.getElementById('searchfligth-children').value;
@@ -52,6 +53,7 @@ angular.module('todoApp', [])
 				   queryData[k] = todoList.model[k];
 			   }
 			   queryData.departure_date = new Date(queryData.departure_date + ' 2021').toISOString().slice(0, 10);
+			   queryData.return_date    = new Date(queryData.return_date + ' 2021').toISOString().slice(0, 10);
 			   console.log(queryData);
 			   console.log(todoList.model);
 			   var queryString = Object.keys(queryData).map(key => key + '=' + queryData[key]).join('&');
