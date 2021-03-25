@@ -55,6 +55,14 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 			<!-- tickets-list -->
 			<ul class="tickets-list main__tickets-list hidden">
 				<!-- tickets-item -->
+				<li class="tickets-item tickets-list__item" ng-if="todoList.bookList.flights.length == 0">
+					<div class="tickets-item__left">
+						<div class="tickets-item__logo"></div>
+						<div class="tickets-item__info">
+							<h2>Nothing Found</h2>
+						</div>
+					</div>
+				</li>
 				<li class="tickets-item tickets-list__item" ng-repeat="book in todoList.bookList.flights">
 					<div class="tickets-item__left">
 						<div class="tickets-item__logo">
