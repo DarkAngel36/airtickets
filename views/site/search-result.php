@@ -4,20 +4,22 @@
 $this->registerJsFile('/js/search-result.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('/js/angular.min.js', ['position' => \yii\web\View::POS_HEAD]);
 $this->registerJsFile('/js/SearchResultController.js', ['position' => \yii\web\View::POS_HEAD]);
+$js = <<<JS
+$('#btn-search').click();
+JS;
+$this->registerJs($js, \yii\web\View::POS_READY);
 ?>
 
 <main class="main">
 	<div class="main__inner">
-		<div class="container" ng-controller="SearchResultController as todoList">
+		<div class="container " ng-controller="SearchResultController as todoList">
 			<!-- form-tickets -->
 			<?= \app\widgets\SearchForm::widget() ?>
 			<!-- /form-tickets -->
-			<div>
-				<button class="form-tickets__button" ng-click="todoList.searchBooking()">Find Tickets</button>
-			</div>
+
 			<input type="hidden" id="apiUrl" value="<?= Yii::$app->params['apiPath'] ?>">
 			<!-- cost -->
-			<div class="cost main__cost" ng-if="todoList.isLoaded">
+			<div class="cost main__cost hidden">
 				<div class="row no-gutters">
 					<div class="col-md-4">
 						<div class="cost__item cost__item_active cost-item-best"
@@ -46,13 +48,13 @@ $this->registerJsFile('/js/SearchResultController.js', ['position' => \yii\web\V
 			<!-- /cost -->
 
 			<!-- loader -->
-			<div class="loader">
+			<div class="loader stop-animation">
 
 			</div>
 			<!-- /loader -->
 
 			<!-- tickets-list -->
-			<ul class="tickets-list main__tickets-list">
+			<ul class="tickets-list main__tickets-list hidden">
 				<!-- tickets-item -->
 				<li class="tickets-item tickets-list__item" ng-repeat="book in todoList.bookList.flights">
 					<div class="tickets-item__left">
@@ -77,9 +79,10 @@ $this->registerJsFile('/js/SearchResultController.js', ['position' => \yii\web\V
 										<span class="scheme__text">{{ book.itineraries[0]['segments'][0]['departure']['iataCode'] }}</span>
 									</li>
 									<li class="scheme__item"
+									    ng-if="book.itineraries[0]['segments'].length > 1"
 									    ng-repeat="itemSegment in todoList.getArrayForSegment(book.itineraries[0]['segments'].length)"
 									>
-										<span class="scheme__text">1&nbsp;transfer {{ book.itineraries[0]['segments'][itemSegment]['arrival']['iataCode'] }}</span>
+										<span class="scheme__text">1&nbsp;transfer {{ book.itineraries[0]['segments'][itemSegment]['departure']['iataCode'] }}</span>
 									</li>
 									<li class="scheme__item">
 										<img src="img/icon_plane.svg" alt="" class="scheme__icon scheme__icon_reverse">

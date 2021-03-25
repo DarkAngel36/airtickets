@@ -1,29 +1,23 @@
 angular.module('todoApp', [])
-	   .controller('SearchResultController', function ($scope, $http) {
+	   .controller('SearchResultController', function ($scope, $http, $location) {
 		   let todoList = this;
+
+		   document.querySelector('ul.tickets-list.main__tickets-list').classList
+				   .remove('hidden');
 
 		   todoList.bookLoaded = [];
 		   todoList.isLoaded   = false;
 		   todoList.apiUrl     = null;
 
-		   todoList.model = {
-			   origin         : 'CDG',
-			   destination    : 'DME',
-			   departure_date : '2021-04-03',
-			   return_date    : null,
-			   currency       : 'USD',
-			   adults         : 1,
-			   children       : 0,
-			   infants        : 0
-		   };
+		   todoList.model = queryParams;
 
 		   todoList.bookList     = [];
 		   todoList.dictionaries = [];
 		   todoList.mets         = [];
 
 		   todoList.getArrayForSegment = function (count) {
-			   if (count == 2) {
-				   return [0];
+			   if (count == 1) {
+				   return [];
 			   }
 			   let ret = [];
 			   for (let k = 1; k < count; k++) {
@@ -35,21 +29,37 @@ angular.module('todoApp', [])
 			* поиск билетов
 			*/
 		   todoList.searchBooking = function ($scope) {
+			   todoList.bookList = [];
+			   todoList.isLoaded = false;
+			   document.querySelector('div.loader').classList.remove('stop-animation');
+			   document.querySelector('div.cost.main__cost').classList.add('hidden');
 			   todoList.apiUrl = document.getElementById('apiUrl').value;
-			   var queryString = Object.keys(todoList.model).map(key => key + '=' + todoList.model[key]).join('&');
+			   let queryData   = {};
+			   for (k in todoList.model) {
+				   queryData[k] = todoList.model[k];
+			   }
+			   queryData.departure_date = new Date(queryData.departure_date + ' 2021').toISOString().slice(0, 10);
+			   ;
+			   var queryString = Object.keys(queryData).map(key => key + '=' + queryData[key]).join('&');
 			   $http({
 				   method : 'GET',
 				   //url    : 'http://flightapi.su/api/direct?' + queryString
-				   url : todoList.apiUrl + '/direct?' + queryString
+				   url : todoList.apiUrl + '/api/direct?' + queryString
 			   }).then(
 				   function (response) {
-					   console.log(response.data.data);
-					   todoList.bookList = response.data.data;
-					   console.log(todoList.bookList.airports['CDG']['name']);
+					   todoList.bookList         = response.data.data;
 					   todoList.meta             = response.data.data.meta;
 					   todoList.dictionaries     = response.data.data.dictionaries;
 					   todoList.bookList.flights = todoList.bookList.best;
 					   todoList.isLoaded         = true;
+					   let container             = document.querySelector('div.cost.main__cost');
+					   if (container) {
+						   container.classList.remove('hidden');
+						   console.log('found');
+					   }
+					   document.querySelector('div.loader').classList.add('stop-animation');
+					   document.querySelector('ul.tickets-list.main__tickets-list').classList
+							   .remove('hidden');
 				   },
 				   function (response) {
 				   }

@@ -4,5 +4,5 @@ return [
 	'adminEmail'  => 'admin@example.com',
 	'senderEmail' => 'noreply@example.com',
 	'senderName'  => 'Example.com mailer',
-	'apiPath'     => 'http://flightapi.su/api',
+	'apiPath'     => 'http://flightapi.su',
 ];

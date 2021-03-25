@@ -34,8 +34,10 @@ if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 
 		<!-- Mobile specific metas
 		============================================ -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
-		
+
+		<script type="text/javascript">
+			let queryParams = {};
+		</script>
 		<?php $this->registerCsrfMetaTags() ?>
 		<title><?= Html::encode($this->title) ?></title>
 		<?php $this->head() ?>

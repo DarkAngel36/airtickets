@@ -11,6 +11,21 @@ use app\models\searchFligth;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+$departure_date = date('Y-m-d', strtotime($model->DepartureDate . ' ' . date('Y')));
+$return_date    = $model->ReturningDate ? date('Y-m-d', strtotime($model->DepartureDate . ' ' . date('Y'))) : null;
+$js             = <<<JS
+queryParams = {
+	origin         : '$model->WhenceSelect',
+	destination    : '$model->WhereSelect',
+	departure_date : '$model->DepartureDate',
+	return_date    : null,
+	currency       : 'USD',
+	adults         : $model->Adult,
+	children       : $model->Children,
+	infants        : $model->Infants
+}
+JS;
+$this->registerJs($js, \yii\web\View::POS_HEAD);
 ?>
 
 <div class="form-tickets homescreen__box">
@@ -18,6 +33,7 @@ use yii\helpers\Html;
 		'id'          => 'login-form',
 		'action'      => 'search-result',
 		'layout'      => 'horizontal',
+		'method'      => 'GET',
 		'options'     => ['class' => 'form-tickets__form'],
 		'fieldConfig' => [
 			'template'     => "{label}\n{input}\n{error}",
@@ -33,24 +49,31 @@ use yii\helpers\Html;
 
 	<div class="form-group form-tickets__field">
 		<label class="form-tickets__label">Whence</label>
-		<?= Html::activeDropDownList($model, 'WhenceSelect', $WhenceSelectItems, $selectOptions) ?>
+		<?= Html::activeDropDownList($model, 'WhenceSelect', $WhenceSelectItems,
+			array_merge($selectOptions, ['ng-model' => 'todoList.model.origin'])
+		) ?>
 	</div>
 	<div class="form-group form-tickets__field">
 		<label class="form-tickets__label">Where</label>
-		<?= Html::activeDropDownList($model, 'WhereSelect', $WhereSelectItems, $selectOptions) ?>
+		<?= Html::activeDropDownList($model, 'WhereSelect',
+			$WhereSelectItems,
+			array_merge($selectOptions, ['ng-model' => 'todoList.model.destination'])
+		) ?>
 	</div>
 	<div class="form-group form-tickets__field">
 		<label class="form-tickets__label">Departure Date</label>
 		<?= Html::activeInput('text', $model, 'DepartureDate', [
 			'class'       => 'form-control datepicker',
-			'placeholder' => date('M d'),
+			'placeholder' => 'select date',
+			'ng-model'    => 'todoList.model.departure_date',
 		]) ?>
 	</div>
 	<div class="form-group form-tickets__field">
 		<label class="form-tickets__label">Returning Date</label>
 		<?= Html::activeInput('text', $model, 'ReturningDate', [
 			'class'       => 'form-control datepicker',
-			'placeholder' => date('M d'),
+			'placeholder' => 'select date',
+			'ng-model'    => 'todoList.model.return_date',
 		]) ?>
 	</div>
 	<div class="form-group form-passenger form-tickets__field">
@@ -62,7 +85,8 @@ use yii\helpers\Html;
 				<div class="form-counter form-passenger__counter">
 					<button class="form-counter__btn form-counter__btn_minus">-</button>
 					<?= Html::activeInput('text', $model, 'Adult', [
-						'class' => 'form-counter__field',
+						'class'    => 'form-counter__field',
+						'ng-model' => 'todoList.model.adult',
 					]) ?>
 					<button class="form-counter__btn form-counter__btn_plus">+</button>
 				</div>
@@ -72,7 +96,8 @@ use yii\helpers\Html;
 				<div class="form-counter form-passenger__counter">
 					<button class="form-counter__btn form-counter__btn_minus">-</button>
 					<?= Html::activeInput('text', $model, 'Children', [
-						'class' => 'form-counter__field',
+						'class'    => 'form-counter__field',
+						'ng-model' => 'todoList.model.children',
 					]) ?>
 					<button class="form-counter__btn form-counter__btn_plus">+</button>
 				</div>
@@ -82,7 +107,8 @@ use yii\helpers\Html;
 				<div class="form-counter form-passenger__counter">
 					<button class="form-counter__btn form-counter__btn_minus">-</button>
 					<?= Html::activeInput('text', $model, 'Infants', [
-						'class' => 'form-counter__field',
+						'class'    => 'form-counter__field',
+						'ng-model' => 'todoList.model.infants',
 					]) ?>
 					<button class="form-counter__btn form-counter__btn_plus">+</button>
 				</div>
@@ -94,7 +120,15 @@ use yii\helpers\Html;
 		<?= Html::activeDropDownList($model, 'SeatClass', $SeatClassItems, $selectOptions) ?>
 	</div>
 	<div class="form-tickets__submit">
-		<button type="submit" class="form-tickets__button">Find Tickets</button>
+		<?php if (Yii::$app->controller->action->id === 'index'): ?>
+			<button type="submit" class="form-tickets__button">Find Tickets</button>
+		<?php else: ?>
+			<button id="btn-search"
+			        type="button"
+			        class="form-tickets__button"
+			        ng-click="todoList.searchBooking()">Find Tickets
+			</button>
+		<?php endif; ?>
 	</div>
 	<?php ActiveForm::end(); ?>
 	<div class="overlay"></div>
