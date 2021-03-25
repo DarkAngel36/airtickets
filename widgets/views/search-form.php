@@ -22,7 +22,8 @@ queryParams = {
 	currency       : 'USD',
 	adults         : $model->Adult,
 	children       : $model->Children,
-	infants        : $model->Infants
+	infants        : $model->Infants,
+	travel_class   : '$model->SeatClass',
 }
 JS;
 $this->registerJs($js, \yii\web\View::POS_HEAD);

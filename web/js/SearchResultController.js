@@ -37,9 +37,10 @@ angular.module('todoApp', [])
 			   todoList.model.destination    = document.getElementById('searchfligth-whereselect').value;
 			   todoList.model.departure_date = document.getElementById('searchfligth-departuredate').value;
 
-			   todoList.model.adults   = document.getElementById('searchfligth-adult').value;
-			   todoList.model.children = document.getElementById('searchfligth-children').value;
-			   todoList.model.infants  = document.getElementById('searchfligth-infants').value;
+			   todoList.model.adults       = document.getElementById('searchfligth-adult').value;
+			   todoList.model.children     = document.getElementById('searchfligth-children').value;
+			   todoList.model.infants      = document.getElementById('searchfligth-infants').value;
+			   todoList.model.travel_class = document.getElementById('searchfligth-seatclass').value;
 
 			   todoList.bookList = [];
 			   todoList.isLoaded = false;
