@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-
+$counter = 0;
 $this->registerJsFile('/js/search-result.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('/js/angular.min.js', ['position' => \yii\web\View::POS_HEAD]);
 $this->registerJsFile('/js/SearchResultController.js', ['position' => \yii\web\View::POS_HEAD]);
@@ -8,10 +8,12 @@ $js = <<<JS
 $('#btn-search').click();
 JS;
 $this->registerJs($js, \yii\web\View::POS_READY);
+
 ?>
 
 <main class="main">
 	<div class="main__inner">
+
 		<div class="container " ng-controller="SearchResultController as todoList">
 			<!-- form-tickets -->
 			<?= \app\widgets\SearchForm::widget() ?>
@@ -109,12 +111,21 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 					</div>
 					<div class="tickets-item__right">
 						<div class="tickets-item__price">{{ +bookList.price.total | currency }}</div>
-						<button class="tickets-item__btn">Buy ticket</button>
+						<button
+								type="button"
+								class="tickets-item__btn"
+								ng-click="todoList.buy('buy-ticket-button-' + $index, bookList)"
+								data-button="{{ 'buy-ticket-button-' + $index }}"
+								ng-class="'buy-ticket-button-' + $index"
+						>Buy ticket
+						</button>
 					</div>
 				</li>
 				<!-- /tickets-item -->
 
 			</ul>
+			
+			<?= $this->render('parts/buy-modal') ?>
 			<!-- /tickets-list -->
 		</div>
 	</div>

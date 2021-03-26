@@ -5,9 +5,17 @@ angular.module('todoApp', [])
 		   document.querySelector('ul.tickets-list.main__tickets-list').classList
 				   .remove('hidden');
 
+		   todoList.sendData = {
+			   email : null,
+			   phone : null,
+			   query : {}
+		   };
+
 		   todoList.bookLoaded = [];
 		   todoList.isLoaded   = false;
 		   todoList.apiUrl     = null;
+
+		   todoList.currentProposal = null;
 
 		   todoList.model = queryParams;
 		   for (let k in todoList.model) {
@@ -17,6 +25,14 @@ angular.module('todoApp', [])
 		   todoList.bookList     = [];
 		   todoList.dictionaries = [];
 		   todoList.mets         = [];
+
+		   todoList.buy = function (el, item) {
+			   todoList.currentProposal = item;
+			   let modal                = document.querySelector('div.modal.buy-modal');
+			   modal.classList.add('in');
+			   modal.classList.remove('fade');
+			   modal.style.display = 'block';
+		   };
 
 		   todoList.getArrayForSegment = function (count) {
 			   if (count == 1) {
