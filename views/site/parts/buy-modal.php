@@ -28,7 +28,7 @@ $model = new \app\models\SendQuery();
 						<p>Childrens: {{ todoList.model.children }}</p>
 						<p>Infants: {{ todoList.model.infants }}</p>
 
-						<p>Total: {{ todoList.currentProposal.priceTotal | currency }}</p>
+						<p>Total: {{ todoList.currentProposal.price.total | currency }}</p>
 					</div>
 					<?php $form = ActiveForm::begin([
 						'id'     => 'login-form',
