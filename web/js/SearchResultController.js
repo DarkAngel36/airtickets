@@ -26,9 +26,21 @@ angular.module('todoApp', [])
 		   todoList.dictionaries = [];
 		   todoList.mets         = [];
 
+		   todoList.sendQuery = function () {
+			   let modal = document.querySelector('div.modal.buy-modal');
+
+			   modal.classList.remove('in');
+			   modal.classList.add('fade');
+			   modal.style.display = 'none';
+
+			   alert('Sended');
+		   };
+
 		   todoList.buy = function (el, item) {
+			   let modal = document.querySelector('div.modal.buy-modal');
+
 			   todoList.currentProposal = item;
-			   let modal                = document.querySelector('div.modal.buy-modal');
+
 			   modal.classList.add('in');
 			   modal.classList.remove('fade');
 			   modal.style.display = 'block';

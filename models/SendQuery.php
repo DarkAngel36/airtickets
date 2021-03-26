@@ -16,6 +16,7 @@ class SendQuery extends Model {
 		return [
 			// name, email, subject and body are required
 			[['phone', 'email'], 'required'],
+			['phone', 'string', 'min' => 7, 'max' => 15],
 			// email has to be a valid email address
 			['email', 'email'],
 			['query', 'safe'],

@@ -19,13 +19,16 @@ $model = new \app\models\SendQuery();
 
 				<div id="modalContent">
 					<div>
-						<p>From: {{todoList.model.origin}}</p>
-						<p>To: {{todoList.model.destination}}</p>
-						<p>Adults: {{todoList.model.adults}}</p>
-						<p>Childrens: {{todoList.model.children}}</p>
-						<p>Infants: {{todoList.model.infants}}</p>
+						<p>From: {{ todoList.bookList.airports[todoList.currentProposal.tickets[0].departure.iataCode]['name'] }}</p>
+						<p>To: {{ todoList.bookList.airports[todoList.currentProposal.tickets[0].arrival.iataCode]['name'] }}</p>
 						<p>{{ todoList.model.departure_date }}</p>
-						<p>Total: {{todoList.currentProposal.price.total | currency}}</p>
+						<p>Departure At: {{ todoList.currentProposal.tickets[0].departure.at | date:'HH:mm' }}</p>
+						<p>Arrival At: {{ todoList.currentProposal.tickets[0].arrival.at | date:'HH:mm' }}</p>
+						<p>Adults: {{ todoList.model.adults }}</p>
+						<p>Childrens: {{ todoList.model.children }}</p>
+						<p>Infants: {{ todoList.model.infants }}</p>
+
+						<p>Total: {{ todoList.currentProposal.priceTotal | currency }}</p>
 					</div>
 					<?php $form = ActiveForm::begin([
 						'id'     => 'login-form',
@@ -48,14 +51,18 @@ $model = new \app\models\SendQuery();
 					
 					
 					<?= $form->field($model, 'phone')->textInput([
-						'class'            => 'form-counter__field',
+						//						'class'            => 'form-counter__field',
 						'ng-model'         => 'todoList.sendData.phone',
 						'ng-model-options' => "{ getterSetter: true }",
 					]) ?>
 
 					<div class="form-group">
 						<div class="col-lg-offset-1 col-lg-11">
-							<?= Html::button('Send Query', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+							<?= Html::button('Send Query', [
+								'class'    => 'btn btn-primary',
+								'name'     => 'login-button',
+								'ng-click' => 'todoList.sendQuery()',
+							]) ?>
 						</div>
 					</div>
 					
