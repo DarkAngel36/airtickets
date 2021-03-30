@@ -69,7 +69,10 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 					<div class="tickets-item__left">
 						<div class="tickets-item__logo">
 							<!--							<img src="img/S7-logoty.png" alt="">-->
-							<p ng-repeat="carrier in bookList.operating">{{ todoList.dictionaries.carriers[carrier] }}</p>
+							<img ng-repeat="carrier in bookList.operating"
+							     src="http://pics.avs.io/200/200/{{ carrier }}.png">
+							<p ng-repeat="carrier in bookList.operating">{{ //
+								todoList.dictionaries.carriers[carrier] }}</p>
 						</div>
 						<div class="tickets-item__info" ng-repeat="book in bookList.tickets">
 							<div class="tickets-item__date">

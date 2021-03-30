@@ -11,3 +11,8 @@
 header.header {
     z-index: 1;
 }
+
+.tickets-item__logo img {
+    margin-top: -50px;
+    margin-bottom: -50px;
+}
