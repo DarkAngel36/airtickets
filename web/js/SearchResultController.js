@@ -74,7 +74,9 @@ angular.module('todoApp', [])
 			   todoList.bookList = [];
 			   todoList.isLoaded = false;
 			   document.querySelector('div.loader').classList.remove('stop-animation');
-			   document.querySelector('div.cost.main__cost').classList.add('hidden');
+			   if (document.querySelector('div.cost.main__cost')) {
+				   document.querySelector('div.cost.main__cost').classList.add('hidden');
+			   }
 			   todoList.apiUrl = document.getElementById('apiUrl').value;
 			   let queryData   = {};
 			   for (k in todoList.model) {
@@ -93,9 +95,9 @@ angular.module('todoApp', [])
 				   function (response) {
 					   console.log(response);
 					   todoList.bookList         = response.data.data;
-					   todoList.meta             = response.data.data.meta;
-					   todoList.dictionaries     = response.data.data.dictionaries;
-					   todoList.bookList.flights = todoList.bookList.best;
+					   todoList.meta             = response.data.data.meta ?? [];
+					   todoList.dictionaries     = response.data.data.dictionaries ?? [];
+					   todoList.bookList.flights = response.data.data.best ?? [];
 					   todoList.isLoaded         = true;
 					   let container             = document.querySelector('div.cost.main__cost');
 					   if (container) {
@@ -107,6 +109,15 @@ angular.module('todoApp', [])
 							   .remove('hidden');
 				   },
 				   function (response) {
+					   todoList.bookList.flights = [];
+					   let container             = document.querySelector('div.cost.main__cost');
+					   if (container) {
+						   container.classList.remove('hidden');
+						   console.log('found');
+					   }
+					   document.querySelector('div.loader').classList.add('stop-animation');
+					   document.querySelector('ul.tickets-list.main__tickets-list').classList
+							   .remove('hidden');
 				   }
 			   );
 		   };

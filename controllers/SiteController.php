@@ -86,6 +86,10 @@ class SiteController extends Controller {
 	 * search result
 	 */
 	public function actionSearchResult() {
+		if (!Yii::$app->request->isPost) {
+			return $this->redirect('/');
+		}
+		
 		return $this->render('search-result', []);
 	}
 	

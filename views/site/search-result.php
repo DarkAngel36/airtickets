@@ -26,7 +26,7 @@ $this->registerJs($js, \yii\web\View::POS_READY);
 			<!-- /loader -->
 
 			<!-- cost -->
-			<div class="cost main__cost hidden">
+			<div class="cost main__cost hidden" ng-if="todoList.bookList.flights.length != 0">
 				<div class="row no-gutters">
 					<div class="col-md-4">
 						<div class="cost__item cost__item_active cost-item-best"
